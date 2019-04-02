@@ -60,11 +60,11 @@ export default {
   },
   created () {
     this.DEFAULT_VALUE = '*'
-    this.minValue = 0
+    this.minValue = 1
     this.maxValue = 31
-    this.valueRange.start = 0
+    this.valueRange.start = 1
     this.valueRange.end = 31
-    this.valueLoop.start = 0
+    this.valueLoop.start = 1
     this.valueLoop.interval = 1
     this.parseProp(this.prop)
   }
