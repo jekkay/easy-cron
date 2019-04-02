@@ -63,7 +63,7 @@ export default {
       second: '1',
       minute: '2-4',
       hour: '3/5',
-      day: '',
+      day: '3/12',
       month: '',
       week: '',
       year: ''

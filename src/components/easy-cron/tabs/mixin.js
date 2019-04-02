@@ -5,6 +5,7 @@ const ENABLE_WEEK = 'ENABLE_WEEK'
 const TYPE_EVERY = 'TYPE_EVERY'
 const TYPE_RANGE = 'TYPE_RANGE'
 const TYPE_LOOP = 'TYPE_LOOP'
+const TYPE_WORK = 'TYPE_WORK'
 const TYPE_LAST = 'TYPE_LAST'
 const TYPE_SPECIFY = 'TYPE_SPECIFY'
 
@@ -35,6 +36,7 @@ export default {
       TYPE_EVERY,
       TYPE_RANGE,
       TYPE_LOOP,
+      TYPE_WORK,
       TYPE_LAST,
       TYPE_SPECIFY,
       // 对于不同的类型，所定义的值也有所不同
@@ -51,7 +53,7 @@ export default {
         end: 0
       },
       valueList: [],
-      valueLast: 1,
+      valueWork: 1,
       maxValue: 0,
       minValue: 0
     }
@@ -78,8 +80,11 @@ export default {
         case TYPE_LOOP:
           result.push(`${this.valueLoop.start}/${this.valueLoop.interval}`)
           break
+        case TYPE_WORK:
+          result.push(`${this.valueWork}W`)
+          break
         case TYPE_LAST:
-          result.push(`${this.valueLast}L`)
+          result.push('L')
           break
         case TYPE_SPECIFY:
           result.push(this.valueList.join(','))
@@ -113,6 +118,12 @@ export default {
           if (values.length >= 2) {
             this.valueLoop.start = value[0] === '*' ? 0 : parseInt(values[0])
             this.valueLoop.interval = parseInt(values[1])
+          }
+        } else if (value.indexOf('W') >= 0) {
+          this.type = TYPE_WORK
+          const values = value.split('W')
+          if (!values[0] && !isNaN(values[0])) {
+            this.valueWork = parseInt(values[0])
           }
         } else if (value.indexOf('L') >= 0) {
           this.type = TYPE_LAST
