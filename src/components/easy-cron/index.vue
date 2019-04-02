@@ -7,22 +7,22 @@
             <second-ui v-model="second"></second-ui>
           </TabPane>
           <TabPane label="分" name="minute">
-            <minute-ui></minute-ui>
+            <minute-ui v-model="minute"></minute-ui>
           </TabPane>
           <TabPane label="时" name="hour">
-            <hour-ui></hour-ui>
+            <hour-ui v-model="hour"></hour-ui>
           </TabPane>
           <TabPane label="日" name="day">
-            <day-ui></day-ui>
+            <day-ui v-model="day"></day-ui>
           </TabPane>
           <TabPane label="月" name="month">
-            <month-ui></month-ui>
+            <month-ui v-model="month"></month-ui>
           </TabPane>
           <TabPane label="周" name="week">
-            <week-ui></week-ui>
+            <week-ui v-model="week"></week-ui>
           </TabPane>
           <TabPane label="年" name="year">
-            <year-ui></year-ui>
+            <year-ui v-model="year"></year-ui>
           </TabPane>
         </Tabs>
       </div>
@@ -61,8 +61,8 @@ export default {
     return {
       curtab: '',
       second: '1',
-      minute: '2',
-      hour: '3',
+      minute: '2-4',
+      hour: '3/5',
       day: '',
       month: '',
       week: '',

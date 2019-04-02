@@ -42,7 +42,7 @@ export default {
   },
   watch: {
     value_c (newVal, oldVal) {
-      console.info('change:' + newVal)
+      // console.info('change:' + newVal)
       this.$emit('change', newVal)
     }
   },
@@ -54,7 +54,7 @@ export default {
     this.valueRange.end = 59
     this.valueLoop.start = 0
     this.valueLoop.interval = 1
-    console.info('created')
+    // console.info('created')
     this.parseProp(this.prop)
   }
 }

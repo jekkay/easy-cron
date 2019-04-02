@@ -125,7 +125,7 @@ export default {
           this.type = TYPE_EVERY
         }
       } catch (e) {
-        console.info(e)
+        // console.info(e)
         this.type = TYPE_EVERY
       }
     }
