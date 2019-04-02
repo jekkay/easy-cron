@@ -64,7 +64,7 @@ export default {
       minute: '2-4',
       hour: '3/5',
       day: '3/12',
-      month: '',
+      month: '4,5,8',
       week: '',
       year: ''
     }
