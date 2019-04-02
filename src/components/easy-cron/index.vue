@@ -19,7 +19,7 @@
             <month-ui v-model="month"></month-ui>
           </TabPane>
           <TabPane label="周" name="week">
-            <week-ui v-model="week"></week-ui>
+            <week-ui v-model="week" :day="day"></week-ui>
           </TabPane>
           <TabPane label="年" name="year">
             <year-ui v-model="year"></year-ui>

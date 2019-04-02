@@ -1,7 +1,5 @@
 // 主要用于日和星期的互斥使用
-const ENABLE_DAY = 'ENABLE_DAY'
-const ENABLE_WEEK = 'ENABLE_WEEK'
-
+const TYPE_NOT_SET = 'TYPE_NOT_SET'
 const TYPE_EVERY = 'TYPE_EVERY'
 const TYPE_RANGE = 'TYPE_RANGE'
 const TYPE_LOOP = 'TYPE_LOOP'
@@ -23,16 +21,13 @@ export default {
     }
   },
   data () {
-    const dayOrWeek = ENABLE_DAY
     const type = TYPE_EVERY
     return {
       DEFAULT_VALUE,
-      // 启用日或者星期
-      dayOrWeek,
-      ENABLE_DAY,
-      ENABLE_WEEK,
       // 类型
       type,
+      // 启用日或者星期互斥用
+      TYPE_NOT_SET,
       TYPE_EVERY,
       TYPE_RANGE,
       TYPE_LOOP,
@@ -71,6 +66,9 @@ export default {
     value_c () {
       let result = []
       switch (this.type) {
+        case TYPE_NOT_SET:
+          result.push('?')
+          break
         case TYPE_EVERY:
           result.push(this.DEFAULT_VALUE)
           break
@@ -105,6 +103,8 @@ export default {
       try {
         if (!value || value === this.DEFAULT_VALUE) {
           this.type = TYPE_EVERY
+        } else if (value.indexOf('?') >= 0) {
+          this.type = TYPE_NOT_SET
         } else if (value.indexOf('-') >= 0) {
           this.type = TYPE_RANGE
           const values = value.split('-')
