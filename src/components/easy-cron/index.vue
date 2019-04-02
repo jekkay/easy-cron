@@ -96,7 +96,7 @@ export default {
 <style scoped>
 .easy-cron {
   display: inline-block;
-  border: 1px solid green;
+  border: 1px solid #2d8cf0;
 }
 
 .content {
@@ -106,11 +106,13 @@ export default {
 
 .left {
   flex-basis: 60%;
-  border: 1px solid dimgray;
+  width: 60%;
+  border: 1px solid transparent;
+  border-right-color: #2d8cf0;
 }
 
 .right {
   flex-basis: 40%;
-  border: 1px solid dimgray;
+  // border: 1px solid dimgray;
 }
 </style>

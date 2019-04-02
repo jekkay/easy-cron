@@ -1,11 +1,9 @@
 <template>
   <div class="main-content">
-    <div style="flex-basis: 100%; border: 1px solid red;">
+    <div>
       <easy-cron style="width: 600px;"></easy-cron>
+      <easy-cron style="width: 800px; margin-left: 20px;"></easy-cron>
     </div>
-    <!-- div style="flex-basis: 100%; border: 1px solid red;">
-      <easy-cron style="width: 800px;"></easy-cron>
-    </div -->
     <div class="card-content">
       <h2>{{ msg }}</h2>
       <div class="form-list">
