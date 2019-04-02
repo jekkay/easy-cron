@@ -3,6 +3,9 @@
     <div style="flex-basis: 100%; border: 1px solid red;">
       <easy-cron style="width: 600px;"></easy-cron>
     </div>
+    <!-- div style="flex-basis: 100%; border: 1px solid red;">
+      <easy-cron style="width: 800px;"></easy-cron>
+    </div -->
     <div class="card-content">
       <h2>{{ msg }}</h2>
       <div class="form-list">
@@ -50,7 +53,7 @@ h1, h2 {
   font-weight: normal;
 }
 .main-content {
-  background-color: #E0E0E0;
+  // background-color: #E0E0E0;
   display: flex;
   flex-wrap: wrap;
   align-items: center;

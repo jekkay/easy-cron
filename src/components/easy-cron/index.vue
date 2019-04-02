@@ -1,47 +1,53 @@
 <template>
-  <div class="easy-cron">
+  <Card class="easy-cron">
     <div class="content">
       <div class="left">
         <Tabs size="small" v-model="curtab">
           <TabPane label="秒" name="second">
-            <second></second>
+            <second-ui v-model="second"></second-ui>
           </TabPane>
           <TabPane label="分" name="minute">
-            <minute></minute>
+            <minute-ui></minute-ui>
           </TabPane>
           <TabPane label="时" name="hour">
-            <hour></hour>
+            <hour-ui></hour-ui>
           </TabPane>
           <TabPane label="日" name="day">
-            <day></day>
+            <day-ui></day-ui>
           </TabPane>
           <TabPane label="月" name="month">
-            <month></month>
+            <month-ui></month-ui>
           </TabPane>
           <TabPane label="周" name="week">
-            <week></week>
+            <week-ui></week-ui>
           </TabPane>
           <TabPane label="年" name="year">
-            <year></year>
+            <year-ui></year-ui>
           </TabPane>
         </Tabs>
       </div>
       <div class="right">
-        right
         {{curtab}}
+        <div style="color: red"> 秒:{{second}} </div>
+        <div style="color: red"> 分:{{minute}} </div>
+        <div style="color: red"> 时:{{hour}} </div>
+        <div style="color: red"> 日:{{day}} </div>
+        <div style="color: red"> 月:{{month}} </div>
+        <div style="color: red"> 周:{{week}} </div>
+        <div style="color: red"> 年:{{year}} </div>
       </div>
     </div>
-  </div>
+  </Card>
 </template>
 
 <script>
-import Second from './tabs/second'
-import Minute from './tabs/minute'
-import Hour from './tabs/hour'
-import Day from './tabs/day'
-import Week from './tabs/week'
-import Month from './tabs/month'
-import Year from './tabs/year'
+import SecondUi from './tabs/second'
+import MinuteUi from './tabs/minute'
+import HourUi from './tabs/hour'
+import DayUi from './tabs/day'
+import WeekUi from './tabs/week'
+import MonthUi from './tabs/month'
+import YearUi from './tabs/year'
 
 export default {
   name: 'easy-cron',
@@ -54,9 +60,9 @@ export default {
   data () {
     return {
       curtab: '',
-      second: '',
-      minute: '',
-      hour: '',
+      second: '1',
+      minute: '2',
+      hour: '3',
       day: '',
       month: '',
       week: '',
@@ -74,13 +80,13 @@ export default {
     }
   },
   components: {
-    Second,
-    Minute,
-    Hour,
-    Day,
-    Week,
-    Month,
-    Year
+    SecondUi,
+    MinuteUi,
+    HourUi,
+    DayUi,
+    WeekUi,
+    MonthUi,
+    YearUi
   },
   created () {
   }
@@ -100,9 +106,11 @@ export default {
 
 .left {
   flex-basis: 60%;
+  border: 1px solid dimgray;
 }
 
 .right {
   flex-basis: 40%;
+  border: 1px solid dimgray;
 }
 </style>
