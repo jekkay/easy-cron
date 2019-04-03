@@ -1,15 +1,18 @@
 <template>
   <div class="main-content">
-    <div style="flex-basis: 100%">
-      <easy-cron style="width: 700px;"  v-model="formData.cronValue1"></easy-cron>
-      <easy-cron style="width: 800px;" v-model="formData.cronValue2"></easy-cron>
-    </div>
     <div class="card-content">
       <h2>{{ msg }}</h2>
       <div class="form-list">
+        <div><label>表单内容：</label>{{formData}}</div>
         <Form :model="formData" :rules="formDataValidator" :label-width="80">
-          <FormItem label="cronValue" prop="cronValue">
-            <Input type="text" v-model="formData.cronValue" placeholder="Please input" />
+          <FormItem label="输入组件" prop="cronValue">
+            <input-cron type="text" v-model="formData.cronValue1" placeholder="请输入cron表达式(http://www.easysb.cn)"/>
+          </FormItem>
+          <FormItem label="原始组件(700px)" prop="cronValue">
+            <easy-cron style="width: 700px;"  v-model="formData.cronValue2"></easy-cron>
+          </FormItem>
+          <FormItem label="原始组件(800px)" prop="cronValue">
+            <easy-cron style="width: 800px;" v-model="formData.cronValue3"></easy-cron>
           </FormItem>
           <FormItem label="url" prop="url">
             <Input type="text" v-model="formData.url" placeholder="Please input url" />
@@ -25,19 +28,20 @@
 
 <script>
 import EasyCron from './easy-cron'
+import InputCron from './easy-cron/input-cron'
 import CronValidator from './easy-cron/validator'
 
 export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Form Field For Easy-Cron Testing',
+      msg: 'Cron表达式测试页面',
       formData: {
         url: 'http://www.easysb.cn',
         qq: '34538980',
-        cronValue1: '1 2-4 3/5 3/12 4,5,8 ? *',
+        cronValue1: '',
         cronValue2: '4 1/2 5 7-8 1 ?',
-        cronValue: ''
+        cronValue3: '1 2-4 3/5 3/12 4,5,8 ? *'
       },
       formDataValidator: {
         cronValue: [
@@ -47,7 +51,11 @@ export default {
     }
   },
   components: {
-    EasyCron
+    EasyCron,
+    InputCron
+  },
+  created () {
+    // console.info(aaa)
   }
 }
 </script>

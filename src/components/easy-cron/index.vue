@@ -101,15 +101,16 @@ export default {
     }
   },
   watch: {
-    cronValue (newValue, oldValue) {
-      if (newValue === this.cronValue_c) {
-        console.info('same cron value: ' + newValue)
+    cronValue (newVal, oldVal) {
+      if (newVal === this.cronValue_c) {
+        console.info('same cron value: ' + newVal)
         return
       }
       this.formatValue()
     },
-    cronValue_c (newValue, oldValue) {
+    cronValue_c (newVal, oldVal) {
       this.calTriggerList()
+      this.$emit('change', newVal)
     }
   },
   methods: {
