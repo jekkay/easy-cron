@@ -118,3 +118,6 @@ data () {
 * [远望の无限](https://gitee.com/ywwxhz/CronExpGenerator)
 * [ldy](https://gitee.com/lindeyi/vue-cron)
 
+#### 如果大侠觉得有用的话，留下大名
+
+![image](https://gitee.com/toktok/easy-cron/raw/master/src/assets/begger.jpg)
