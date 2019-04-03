@@ -52,18 +52,23 @@
 1. 快速使用input-cron输入cron表达式组件
 
 <p>直接参考代码如下</p>
-<pre>import InputCron from './easy-cron/input-cron'
+
+
+```
+import InputCron from './easy-cron/input-cron'
 ...
 <FormItem label="输入组件" prop="cronValue">
   <input-cron type="text" v-model="formData.cronValue1"
     placeholder="请输入cron表达式(http://www.easysb.cn)"/>
 </FormItem>
-</pre>
+```
 
 2. 直接使用easy-cron元组件
 
 <p>直接参考代码如下</p>
-<pre>import EasyCron from './easy-cron'
+
+```
+import EasyCron from './easy-cron'
 ...
 <FormItem label="原始组件(700px)" prop="cronValue">
   <easy-cron style="width: 700px;"
@@ -74,12 +79,13 @@
   <easy-cron style="width: 800px;"
     v-model="formData.cronValue3"></easy-cron>
 </FormItem>
-</pre>
+```
 
 3. 使用cron表达式校验器
 
 <p>直接参考代码如下</p>
-<pre>```
+
+```
 <FormItem label="原始组件(800px)" prop="cronValue">
   <easy-cron style="width: 800px;"
     v-model="formData.cronValue3"></easy-cron>
@@ -102,7 +108,7 @@ data () {
       ]
   }
 }
-</pre>
+```
  
 
 #### 参与贡献
