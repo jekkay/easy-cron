@@ -6,9 +6,9 @@
 <p>easy-cron是基于Vue.js和iview实现crontab表达式的UI组件，支持多种特性，可以方便、快捷直观地定义cron表达式，并支持给定开始时间后的执行时间点，方便排除错误。</p>
 本工程包括测试代码，和vue原始文件。
 
-![image](https://gitee.com/toktok/easy-cron/blob/master/docs/pic-1.jpg)
-![image](https://gitee.com/toktok/easy-cron/blob/master/docs/pic-2.jpg)
-![image](https://gitee.com/toktok/easy-cron/blob/master/docs/pic-3.jpg)
+![image](https://gitee.com/toktok/easy-cron/raw/master/docs/pic-1.jpg)
+![image](https://gitee.com/toktok/easy-cron/raw/master/docs/pic-2.jpg)
+![image](https://gitee.com/toktok/easy-cron/raw/master/docs/pic-3.jpg)
 
 
 #### 软件特性
@@ -52,18 +52,18 @@
 1. 快速使用input-cron输入cron表达式组件
 
 <p>直接参考代码如下</p>
-<code><pre>import InputCron from './easy-cron/input-cron'
+<pre>import InputCron from './easy-cron/input-cron'
 ...
 <FormItem label="输入组件" prop="cronValue">
   <input-cron type="text" v-model="formData.cronValue1"
     placeholder="请输入cron表达式(http://www.easysb.cn)"/>
 </FormItem>
-</pre></code>
+</pre>
 
 2. 直接使用easy-cron元组件
 
 <p>直接参考代码如下</p>
-<code><pre>import EasyCron from './easy-cron'
+<pre>import EasyCron from './easy-cron'
 ...
 <FormItem label="原始组件(700px)" prop="cronValue">
   <easy-cron style="width: 700px;"
@@ -74,12 +74,12 @@
   <easy-cron style="width: 800px;"
     v-model="formData.cronValue3"></easy-cron>
 </FormItem>
-</pre></code>
+</pre>
 
 3. 使用cron表达式校验器
 
 <p>直接参考代码如下</p>
-<code><pre>
+<pre>```
 <FormItem label="原始组件(800px)" prop="cronValue">
   <easy-cron style="width: 800px;"
     v-model="formData.cronValue3"></easy-cron>
@@ -102,7 +102,7 @@ data () {
       ]
   }
 }
-</pre></code>
+</pre>
  
 
 #### 参与贡献
