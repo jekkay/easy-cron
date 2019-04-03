@@ -1,8 +1,8 @@
 <template>
   <div class="main-content">
-    <div>
-      <easy-cron style="width: 600px;"></easy-cron>
-      <easy-cron style="width: 800px; margin-left: 20px;"></easy-cron>
+    <div style="flex-basis: 100%">
+      <easy-cron style="width: 700px;"  v-model="formData.cronValue1"></easy-cron>
+      <easy-cron style="width: 800px;" v-model="formData.cronValue2"></easy-cron>
     </div>
     <div class="card-content">
       <h2>{{ msg }}</h2>
@@ -25,6 +25,7 @@
 
 <script>
 import EasyCron from './easy-cron'
+import CronValidator from './easy-cron/validator'
 
 export default {
   name: 'HelloWorld',
@@ -34,9 +35,15 @@ export default {
       formData: {
         url: 'http://www.easysb.cn',
         qq: '34538980',
+        cronValue1: '1 2-4 3/5 3/12 4,5,8 ? *',
+        cronValue2: '4 1/2 5 7-8 1 ?',
         cronValue: ''
       },
-      formDataValidator: {}
+      formDataValidator: {
+        cronValue: [
+          { validator: CronValidator }
+        ]
+      }
     }
   },
   components: {

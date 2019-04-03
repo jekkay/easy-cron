@@ -56,7 +56,7 @@ export default {
   watch: {
     prop (newVal, oldVal) {
       if (newVal === this.value_c) {
-        console.info('skip ' + newVal)
+        // console.info('skip ' + newVal)
         return
       }
       this.parseProp(newVal)

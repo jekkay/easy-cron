@@ -3,6 +3,7 @@
     <RadioGroup v-model="type">
     <div class="item">
       <Radio label="TYPE_NOT_SET" class="choice" :disabled="disableChoice">不设置</Radio>
+      <span class="tip-info">日和周只能设置其中之一</span>
     </div>
     <div class="item">
       <Radio label="TYPE_RANGE" class="choice" :disabled="disableChoice">区间</Radio>
@@ -63,9 +64,7 @@ export default {
   },
   computed: {
     disableChoice () {
-      console.info(this.day)
-      if (!this.day) return false
-      return this.day !== '*' && this.day !== '?'
+      return this.day && this.day !== '?'
     }
   },
   watch: {
@@ -74,7 +73,7 @@ export default {
       this.updateValue()
     },
     day (newVal) {
-      console.info('new day: ' + newVal)
+      // console.info('new day: ' + newVal)
       this.updateValue()
     }
   },
@@ -106,6 +105,10 @@ export default {
 
 .item {
   margin-top: 5px;
+}
+
+.tip-info {
+  color: #999
 }
 
 .choice {
