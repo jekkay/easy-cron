@@ -22,6 +22,10 @@
           </FormItem>
         </Form>
       </div>
+      <div class="footer-info">
+        <h1>如果觉得有用，请留下你的大名</h1>
+        <img src="static/begger.jpg" />
+      </div>
     </div>
   </div>
 </template>
