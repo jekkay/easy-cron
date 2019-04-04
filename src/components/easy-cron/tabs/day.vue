@@ -79,7 +79,7 @@ export default {
     }
   },
   created () {
-    this.DEFAULT_VALUE = '?'
+    this.DEFAULT_VALUE = '*'
     this.minValue = 1
     this.maxValue = 31
     this.valueRange.start = 1

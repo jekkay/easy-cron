@@ -70,7 +70,7 @@ export default {
           result.push('?')
           break
         case TYPE_EVERY:
-          result.push(this.DEFAULT_VALUE)
+          result.push('*')
           break
         case TYPE_RANGE:
           result.push(`${this.valueRange.start}-${this.valueRange.end}`)
