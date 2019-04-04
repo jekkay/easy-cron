@@ -97,8 +97,11 @@ export default {
   methods: {
     parseProp (value) {
       if (value === this.value_c) {
-        console.info('same ' + value)
+        // console.info('same ' + value)
         return
+      }
+      if (typeof (this.preProcessProp) === 'function') {
+        value = this.preProcessProp(value)
       }
       try {
         if (!value || value === this.DEFAULT_VALUE) {

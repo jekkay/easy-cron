@@ -1,4 +1,5 @@
 import CronParser from 'cron-parser'
+import { replaceWeekName } from './tabs/const'
 
 export default (rule, value, callback) => {
   // 没填写就不校验
@@ -12,24 +13,27 @@ export default (rule, value, callback) => {
     return false
   }
   // 检查第7项
-  const year = values[6]
-  if (year !== '*' && year !== '?') {
-    let yearValues = []
-    if (year.indexOf('-') >= 0) {
-      yearValues = year.split('-')
-    } else if (year.indexOf('/')) {
-      yearValues = year.split('/')
-    } else {
-      yearValues = [year]
-    }
-    console.info(yearValues)
-    // 判断是否都是数字
-    const checkYear = yearValues.some(item => isNaN(item))
-    if (checkYear) {
-      callback(new Error('cron表达式参数[年]错误:' + year))
-      return false
+  if (values.length > 6) {
+    const year = replaceWeekName(values[6])
+    if (year !== '*' && year !== '?') {
+      let yearValues = []
+      if (year.indexOf('-') >= 0) {
+        yearValues = year.split('-')
+      } else if (year.indexOf('/')) {
+        yearValues = year.split('/')
+      } else {
+        yearValues = [year]
+      }
+      console.info(yearValues)
+      // 判断是否都是数字
+      const checkYear = yearValues.some(item => isNaN(item))
+      if (checkYear) {
+        callback(new Error('cron表达式参数[年]错误:' + year))
+        return false
+      }
     }
   }
+
   // 取其中的前六项
   const e = values.slice(0, 6).join(' ')
   let result = true

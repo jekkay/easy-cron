@@ -37,15 +37,16 @@
 
 <script>
 import mixin from './mixin'
+import { WEEK_MAP_EN, replaceWeekName } from './const.js'
 
 const WEEK_MAP = {
-  '周日': 1,
-  '周一': 2,
-  '周二': 3,
-  '周三': 4,
-  '周四': 5,
-  '周五': 6,
-  '周六': 7
+  '周日': 0,
+  '周一': 1,
+  '周二': 2,
+  '周三': 3,
+  '周四': 4,
+  '周五': 5,
+  '周六': 6
 }
 
 export default {
@@ -59,7 +60,8 @@ export default {
   },
   data () {
     return {
-      WEEK_MAP
+      WEEK_MAP,
+      WEEK_MAP_EN
     }
   },
   computed: {
@@ -80,15 +82,18 @@ export default {
   methods: {
     updateValue () {
       this.$emit('change', this.disableChoice ? '?' : this.value_c)
+    },
+    preProcessProp (c) {
+      return replaceWeekName(c)
     }
   },
   created () {
     this.DEFAULT_VALUE = '*'
-    // 1表示周日 2表示周一
-    this.minValue = 1
-    this.maxValue = 7
-    this.valueRange.start = 1
-    this.valueRange.end = 7
+    // 0,7表示周日 1表示周一
+    this.minValue = 0
+    this.maxValue = 6
+    this.valueRange.start = 0
+    this.valueRange.end = 6
     this.valueLoop.start = 2
     this.valueLoop.interval = 1
     this.parseProp(this.prop)

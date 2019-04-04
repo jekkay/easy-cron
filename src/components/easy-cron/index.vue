@@ -103,7 +103,7 @@ export default {
   watch: {
     cronValue (newVal, oldVal) {
       if (newVal === this.cronValue_c) {
-        console.info('same cron value: ' + newVal)
+        // console.info('same cron value: ' + newVal)
         return
       }
       this.formatValue()
@@ -115,7 +115,7 @@ export default {
   },
   methods: {
     formatValue () {
-      console.info(this.cronValue)
+      // console.info(this.cronValue)
       if (!this.cronValue) return
       const values = this.cronValue.split(' ').filter(item => !!item)
       if (!values || values.length <= 0) return
