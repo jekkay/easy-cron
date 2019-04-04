@@ -5,13 +5,13 @@
       <div class="form-list">
         <div><label>表单内容：</label>{{formData}}</div>
         <Form :model="formData" :rules="formDataValidator" :label-width="80">
-          <FormItem label="输入组件" prop="cronValue">
+          <FormItem label="输入组件" prop="cronValue1">
             <input-cron type="text" v-model="formData.cronValue1" placeholder="请输入cron表达式(http://www.easysb.cn)"/>
           </FormItem>
-          <FormItem label="原始组件(700px)" prop="cronValue">
+          <FormItem label="原始组件(700px)" prop="cronValue2">
             <easy-cron style="width: 700px;"  v-model="formData.cronValue2"></easy-cron>
           </FormItem>
-          <FormItem label="原始组件(800px)" prop="cronValue">
+          <FormItem label="原始组件(800px)" prop="cronValue3">
             <easy-cron style="width: 800px;" v-model="formData.cronValue3"></easy-cron>
           </FormItem>
           <FormItem label="url" prop="url">
@@ -48,7 +48,13 @@ export default {
         cronValue3: '1 2-4 3/5 3/12 4,5,8 ? *'
       },
       formDataValidator: {
-        cronValue: [
+        cronValue1: [
+          { validator: CronValidator }
+        ],
+        cronValue2: [
+          { validator: CronValidator }
+        ],
+        cronValue3: [
           { validator: CronValidator }
         ]
       }
