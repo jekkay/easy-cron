@@ -6,6 +6,8 @@
 <p>easy-cron是基于Vue.js和iview实现crontab表达式的UI组件，支持多种特性，可以方便、快捷直观地定义cron表达式，并支持给定开始时间后的执行时间点，方便排除错误。</p>
 本工程包括测试代码，和vue原始文件。
 
+* [gitee: https://gitee.com/toktok/easy-cron](https://gitee.com/toktok/easy-cron)
+
 ![image](https://gitee.com/toktok/easy-cron/raw/master/docs/pic-1.jpg)
 ![image](https://gitee.com/toktok/easy-cron/raw/master/docs/pic-2.jpg)
 ![image](https://gitee.com/toktok/easy-cron/raw/master/docs/pic-3.jpg)
@@ -49,7 +51,7 @@
 ```
 *    *    *    *    *    *   *
 ┬    ┬    ┬    ┬    ┬    ┬   ┬
-│    │    │    │    │    │   └ year (optional)
+│    │    │    │    │    |   └ year (optional)
 │    │    │    │    │    └ day of week (0 - 7) (0 or 7 is Sun)
 │    │    │    │    └───── month (1 - 12)
 │    │    │    └────────── day of month (1 - 31)
@@ -69,6 +71,9 @@
 'FRI': 5
 'SAT': 6
 ```
+
+* 注意: cron表达式执行预览时间，暂时不支持特殊参数(L,W,#)
+
 #### 使用说明
 
 1. 快速使用input-cron输入cron表达式组件
@@ -96,10 +101,10 @@ import EasyCron from './easy-cron'
   <easy-cron style="width: 700px;"
     v-model="formData.cronValue2"></easy-cron>
 </FormItem>
-// 可以调整元组件大小
+// 可以调整元组件大小，disabled属性用来禁用编辑
 <FormItem label="原始组件(800px)" prop="cronValue">
   <easy-cron style="width: 800px;"
-    v-model="formData.cronValue3"></easy-cron>
+    v-model="formData.cronValue3" :disabled="true"></easy-cron>
 </FormItem>
 ```
 

@@ -3,13 +3,13 @@
     <div class="content">
       <div class="left">
         <Tabs size="small" v-model="curtab">
-          <TabPane label="秒" name="second"><second-ui v-model="second"></second-ui></TabPane>
-          <TabPane label="分" name="minute"><minute-ui v-model="minute"></minute-ui></TabPane>
-          <TabPane label="时" name="hour"><hour-ui v-model="hour"></hour-ui></TabPane>
-          <TabPane label="日" name="day"><day-ui v-model="day" :week="week"></day-ui></TabPane>
-          <TabPane label="月" name="month"><month-ui v-model="month"></month-ui></TabPane>
-          <TabPane label="周" name="week"><week-ui v-model="week" :day="day"></week-ui></TabPane>
-          <TabPane label="年" name="year"><year-ui v-model="year"></year-ui></TabPane>
+          <TabPane label="秒" name="second"><second-ui v-model="second" :disabled="disabled"></second-ui></TabPane>
+          <TabPane label="分" name="minute"><minute-ui v-model="minute" :disabled="disabled"></minute-ui></TabPane>
+          <TabPane label="时" name="hour"><hour-ui v-model="hour" :disabled="disabled"></hour-ui></TabPane>
+          <TabPane label="日" name="day"><day-ui v-model="day" :week="week" :disabled="disabled"></day-ui></TabPane>
+          <TabPane label="月" name="month"><month-ui v-model="month" :disabled="disabled"></month-ui></TabPane>
+          <TabPane label="周" name="week"><week-ui v-model="week" :day="day" :disabled="disabled"></week-ui></TabPane>
+          <TabPane label="年" name="year"><year-ui v-model="year" :disabled="disabled"></year-ui></TabPane>
         </Tabs>
       </div>
       <div class="right">
@@ -54,6 +54,10 @@ export default {
     cronValue: {
       type: String,
       default: ''
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   data () {

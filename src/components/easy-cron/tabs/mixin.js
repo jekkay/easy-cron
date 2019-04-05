@@ -18,6 +18,10 @@ export default {
     prop: {
       type: String,
       default: DEFAULT_VALUE
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   data () {

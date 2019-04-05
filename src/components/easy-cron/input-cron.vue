@@ -1,9 +1,9 @@
 <template>
   <div class="input-cron">
-    <Input :placeholder="placeholder" style="width: auto" v-model="editCronValue">
-      <span slot="append" @click="show=true" class="config-btn">
+    <Input :placeholder="placeholder" style="width: auto" v-model="editCronValue" :disabled="disabled">
+      <a slot="append" @click="showConfigDlg" class="config-btn" :disabled="disabled">
         <Icon type="ios-calendar-outline" style="margin-right: 5px;"></Icon>配置
-      </span>
+      </a>
     </Input>
     <Modal v-model="show" title="配置Cron表达式" :closable="true" :width="`${width+50}`"
       :footer-hide="true">
@@ -35,6 +35,10 @@ export default {
     placeholder: {
       type: String,
       default: '请输入cron表达式'
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -52,6 +56,13 @@ export default {
     },
     editCronValue (newVal, oldVal) {
       this.$emit('change', newVal)
+    }
+  },
+  methods: {
+    showConfigDlg () {
+      if (!this.disabled) {
+        this.show = true
+      }
     }
   },
   components: {

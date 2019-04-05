@@ -2,28 +2,28 @@
   <div class="config-list">
     <RadioGroup v-model="type">
     <div class="item">
-      <Radio label="TYPE_EVERY" class="choice">每时</Radio>
+      <Radio label="TYPE_EVERY" class="choice" :disabled="disabled">每时</Radio>
     </div>
     <div class="item">
-      <Radio label="TYPE_RANGE" class="choice">区间</Radio>
-       从<InputNumber :disabled="type!=TYPE_RANGE" :max="maxValue" :min="minValue" :precision="0"
+      <Radio label="TYPE_RANGE" class="choice" :disabled="disabled">区间</Radio>
+       从<InputNumber :disabled="type!=TYPE_RANGE || disabled" :max="maxValue" :min="minValue" :precision="0"
         class="w60" v-model="valueRange.start" />时
-       至<InputNumber :disabled="type!=TYPE_RANGE" :max="maxValue" :min="minValue" :precision="0"
+       至<InputNumber :disabled="type!=TYPE_RANGE || disabled" :max="maxValue" :min="minValue" :precision="0"
         class="w60" v-model="valueRange.end" />时
     </div>
     <div class="item">
-      <Radio label="TYPE_LOOP" class="choice">循环</Radio>
-      从<InputNumber :disabled="type!=TYPE_LOOP" :max="maxValue" :min="minValue" :precision="0"
+      <Radio label="TYPE_LOOP" class="choice" :disabled="disabled">循环</Radio>
+      从<InputNumber :disabled="type!=TYPE_LOOP || disabled" :max="maxValue" :min="minValue" :precision="0"
        class="w60" v-model="valueLoop.start" />时开始，间隔
-      <InputNumber :disabled="type!=TYPE_LOOP" :max="maxValue" :min="minValue" :precision="0"
+      <InputNumber :disabled="type!=TYPE_LOOP || disabled" :max="maxValue" :min="minValue" :precision="0"
        class="w60" v-model="valueLoop.interval" />时
     </div>
     <div class="item">
-      <Radio  label="TYPE_SPECIFY" class="choice">指定</Radio>
+      <Radio  label="TYPE_SPECIFY" class="choice" :disabled="disabled">指定</Radio>
       <div class="list">
         <CheckboxGroup v-model="valueList">
           <Checkbox class="list-check-item" v-for="i in maxValue+1"
-            :label="i-1" :key="`key-${i-1}`" :disabled="type!=TYPE_SPECIFY"></Checkbox>
+            :label="i-1" :key="`key-${i-1}`" :disabled="type!=TYPE_SPECIFY || disabled"></Checkbox>
         </CheckboxGroup>
       </div>
     </div>

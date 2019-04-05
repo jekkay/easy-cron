@@ -66,7 +66,7 @@ export default {
   },
   computed: {
     disableChoice () {
-      return this.day && this.day !== '?'
+      return (this.day && this.day !== '?') || this.disabled
     }
   },
   watch: {

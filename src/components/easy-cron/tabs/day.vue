@@ -60,7 +60,7 @@ export default {
   },
   computed: {
     disableChoice () {
-      return this.week && this.week !== '?'
+      return (this.week && this.week !== '?') || this.disabled
     }
   },
   watch: {
