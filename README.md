@@ -144,7 +144,6 @@ data () {
 ---|---|---
 v-model | String | 双向绑定
 disabled | Boolean| 是否禁止编辑
-disabled | Boolean| 是否禁止编辑
 exeStartTime | Number, String, Date| 设置cron表达式开始执行时间
 hideYear | Boolean| 是否隐藏参数年设置，如果隐藏，那么参数年将会全部忽略掉
 
