@@ -24,7 +24,7 @@ export default (rule, value, callback) => {
       } else {
         yearValues = [year]
       }
-      console.info(yearValues)
+      // console.info(yearValues)
       // 判断是否都是数字
       const checkYear = yearValues.some(item => isNaN(item))
       if (checkYear) {

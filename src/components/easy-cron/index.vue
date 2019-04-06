@@ -9,7 +9,7 @@
           <TabPane label="日" name="day"><day-ui v-model="day" :week="week" :disabled="disabled"></day-ui></TabPane>
           <TabPane label="月" name="month"><month-ui v-model="month" :disabled="disabled"></month-ui></TabPane>
           <TabPane label="周" name="week"><week-ui v-model="week" :day="day" :disabled="disabled"></week-ui></TabPane>
-          <TabPane label="年" name="year"><year-ui v-model="year" :disabled="disabled"></year-ui></TabPane>
+          <TabPane label="年" name="year" v-if="!hideYear"><year-ui v-model="year" :disabled="disabled"></year-ui></TabPane>
         </Tabs>
       </div>
       <div class="right">
@@ -18,7 +18,7 @@
         <div class="exe-pre">
           <div class="exe-pre-panel">
             <label class="p-left">执行时间</label>
-            <DatePicker type="datetime" v-model="startTime" class="p-right" @on-change="calTriggerList"
+            <DatePicker type="datetime" v-model="startTime" class="p-right"
               placeholder="选择执行开始时间"></DatePicker>
           </div>
           <div class="exe-pre-panel">
@@ -62,6 +62,10 @@ export default {
     exeStartTime: {
       type: [Number, String, Object],
       default: 0
+    },
+    hideYear: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -81,17 +85,18 @@ export default {
   },
   computed: {
     tableData () {
-      return [
+      let c = [
         { name: '秒', value: this.second },
         { name: '分', value: this.minute },
         { name: '时', value: this.hour },
         { name: '日', value: this.day },
         { name: '月', value: this.month },
-        { name: '周', value: this.week },
-        { name: '年', value: this.year },
-        { name: '表达式', value: this.cronValue_c },
-        { name: '表达式(不含年)', value: this.cronValue_c2 }
+        { name: '周', value: this.week }
       ]
+      if (!this.hideYear) {
+        c = c.concat({ name: '年', value: this.year }, { name: '表达式', value: this.cronValue_c })
+      }
+      return c.concat({ name: '表达式(不含年)', value: this.cronValue_c2 })
     },
     cronValue_c () {
       let result = []
@@ -101,7 +106,7 @@ export default {
       result.push(this.day ? this.day : '*')
       result.push(this.month ? this.month : '*')
       result.push(this.week ? this.week : '?')
-      result.push(this.year ? this.year : '*')
+      if (!this.hideYear) result.push(this.year ? this.year : '*')
       return result.join(' ')
     },
     cronValue_c2 () {
@@ -122,6 +127,9 @@ export default {
     },
     exeStartTime (newVal, oldVal) {
       this.calStartTime()
+    },
+    startTime (newVal, oldVal) {
+      this.calTriggerList()
     }
   },
   methods: {
