@@ -162,4 +162,3 @@ hideYear | Boolean| 是否隐藏参数年设置，如果隐藏，那么参数年
 
 #### 如果大侠觉得有用的话，留下大名
 
-![image](https://gitee.com/toktok/easy-cron/raw/master/src/assets/begger.jpg)

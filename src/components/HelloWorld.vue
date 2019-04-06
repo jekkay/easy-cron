@@ -24,8 +24,7 @@
         </Form>
       </div>
       <div class="footer-info">
-        <h1>如果觉得有用，请留下你的大名</h1>
-        <img src="static/begger.jpg" />
+        <h1>任何问题和建议，来者不拒： jekkay@qqvips.cn</h1>
       </div>
     </div>
   </div>
