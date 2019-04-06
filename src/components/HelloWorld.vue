@@ -6,10 +6,10 @@
         <div><label>表单内容：</label>{{formData}}</div>
         <Form :model="formData" :rules="formDataValidator" :label-width="80">
           <FormItem label="输入组件" prop="cronValue1">
-            <input-cron type="text" v-model="formData.cronValue1" placeholder="请输入cron表达式(http://www.easysb.cn)" />
+            <input-cron type="text" v-model="formData.cronValue1" :exeStartTime="exeStartTime" placeholder="请输入cron表达式(http://www.easysb.cn)" />
           </FormItem>
           <FormItem label="原始组件(700px)" prop="cronValue2">
-            <easy-cron style="width: 700px;"  v-model="formData.cronValue2"></easy-cron>
+            <easy-cron style="width: 700px;"  v-model="formData.cronValue2" :exeStartTime="exeStartTime"></easy-cron>
           </FormItem>
           <FormItem label="原始组件(800px)" prop="cronValue3">
             <easy-cron style="width: 800px;" v-model="formData.cronValue3" :disabled="true"></easy-cron>
@@ -40,6 +40,7 @@ export default {
   data () {
     return {
       msg: 'Cron表达式测试页面',
+      exeStartTime: '2015-09-02 12:23:10',
       formData: {
         url: 'http://www.easysb.cn',
         qq: '34538980',

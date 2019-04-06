@@ -8,7 +8,7 @@
     <Modal v-model="show" title="配置Cron表达式" :closable="true" :width="`${width+50}`"
       :footer-hide="true">
         <div>
-          <easy-cron v-model="editCronValue" :style="`width: ${width}px`"></easy-cron>
+          <easy-cron v-model="editCronValue" :style="`width: ${width}px`" :exeStartTime="exeStartTime"></easy-cron>
         </div>
     </Modal>
   </div>
@@ -39,6 +39,10 @@ export default {
     disabled: {
       type: Boolean,
       default: false
+    },
+    exeStartTime: {
+      type: [Number, String, Object],
+      default: 0
     }
   },
   data () {

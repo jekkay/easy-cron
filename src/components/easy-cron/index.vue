@@ -58,6 +58,10 @@ export default {
     disabled: {
       type: Boolean,
       default: false
+    },
+    exeStartTime: {
+      type: [Number, String, Object],
+      default: 0
     }
   },
   data () {
@@ -115,6 +119,9 @@ export default {
     cronValue_c (newVal, oldVal) {
       this.calTriggerList()
       this.$emit('change', newVal)
+    },
+    exeStartTime (newVal, oldVal) {
+      this.calStartTime()
     }
   },
   methods: {
@@ -145,6 +152,17 @@ export default {
         result.push(dateFormat(new Date(iter.next()), format))
       }
       this.preTimeList = result.length > 0 ? result.join('\n') : '无执行时间'
+    },
+    calStartTime () {
+      if (!this.exeStartTime) {
+        this.startTime = new Date()
+        return
+      }
+      try {
+        this.startTime = new Date(this.exeStartTime)
+      } catch (e) {
+        this.startTime = new Date()
+      }
     }
   },
   components: {
@@ -158,6 +176,7 @@ export default {
   },
   created () {
     this.formatValue()
+    this.calStartTime()
   }
 }
 </script>
