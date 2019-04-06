@@ -140,6 +140,7 @@ data () {
 
 #### 5. 属性说明
 
+
 属性名 | 参数类型 | 说明
 ---|---|---
 v-model | String | 双向绑定
@@ -150,7 +151,7 @@ hideYear | Boolean| 是否隐藏参数年设置，如果隐藏，那么参数年
 #### 6. 参与贡献
 
 1. Fork 本仓库
-
+2. 在个人博客留言: [水滴石 http://www.easysb.cn](http://www.easysb.cn)
 
 #### 7. 参考项目
 
@@ -159,6 +160,3 @@ hideYear | Boolean| 是否隐藏参数年设置，如果隐藏，那么参数年
 
 * [远望の无限](https://gitee.com/ywwxhz/CronExpGenerator)
 * [ldy](https://gitee.com/lindeyi/vue-cron)
-
-#### 如果大侠觉得有用的话，留下大名
-
