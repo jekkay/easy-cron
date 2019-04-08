@@ -93,10 +93,12 @@ export default {
         { name: '月', value: this.month },
         { name: '周', value: this.week }
       ]
-      if (!this.hideYear) {
-        c = c.concat({ name: '年', value: this.year }, { name: '表达式', value: this.cronValue_c })
-      }
-      return c.concat({ name: '表达式(不含年)', value: this.cronValue_c2 })
+      return this.hideYear ? c.concat({ name: '表达式', value: this.cronValue_c }) :
+        c.concat(
+          { name: '年', value: this.year },
+          { name: '表达式', value: this.cronValue_c },
+          { name: '表达式(不含年)', value: this.cronValue_c2 }
+        )
     },
     cronValue_c () {
       let result = []
