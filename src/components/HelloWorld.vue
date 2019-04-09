@@ -6,14 +6,15 @@
         <div><label>表单内容：</label>{{formData}}</div>
         <Form :model="formData" :rules="formDataValidator" :label-width="80">
           <FormItem label="输入组件" prop="cronValue1">
-            <input-cron type="text" v-model="formData.cronValue1" :exeStartTime="exeStartTime" :hideYear="true"
-              placeholder="请输入cron表达式(http://www.easysb.cn)" />
+            <input-cron type="text" v-model="formData.cronValue1" :exeStartTime="exeStartTime"
+              :hideYear="true" placeholder="请输入cron表达式(http://www.easysb.cn)" />
           </FormItem>
           <FormItem label="原始组件(700px)" prop="cronValue2">
             <easy-cron style="width: 700px;"  v-model="formData.cronValue2" :exeStartTime="exeStartTime"></easy-cron>
           </FormItem>
           <FormItem label="原始组件(800px)" prop="cronValue3">
-            <easy-cron style="width: 800px;" v-model="formData.cronValue3" :disabled="true" :hideYear="true"></easy-cron>
+            <easy-cron style="width: 800px;" v-model="formData.cronValue3" :disabled="true"
+              :hideYear="true" :remote="remote"></easy-cron>
           </FormItem>
           <FormItem label="url" prop="url">
             <Input type="text" v-model="formData.url" placeholder="Please input url" />
@@ -59,6 +60,19 @@ export default {
           { validator: CronValidator }
         ]
       }
+    }
+  },
+  methods: {
+    remote (val, time, cb) {
+      const msg = `remote called: ${val} ${time}`
+      console.info(msg)
+      setTimeout(() => {
+        // get result for e via http...
+        const result = msg
+        // ...
+        // callback
+        cb(result)
+      }, 200)
     }
   },
   components: {

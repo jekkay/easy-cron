@@ -9,7 +9,7 @@
       :footer-hide="true">
         <div>
           <easy-cron v-model="editCronValue" :style="`width: ${width}px`" :exeStartTime="exeStartTime"
-            :hideYear="hideYear"></easy-cron>
+            :hideYear="hideYear" :remote="remote"></easy-cron>
         </div>
     </Modal>
   </div>
@@ -48,6 +48,10 @@ export default {
     hideYear: {
       type: Boolean,
       default: false
+    },
+    remote: {
+      type: Function,
+      default: null
     }
   },
   data () {

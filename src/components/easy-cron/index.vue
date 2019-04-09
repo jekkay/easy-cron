@@ -43,6 +43,7 @@ import MonthUi from './tabs/month'
 import YearUi from './tabs/year'
 import CronParser from 'cron-parser'
 import dateFormat from './format-date'
+import { debounce } from 'debounce'
 
 export default {
   name: 'easy-cron',
@@ -66,6 +67,10 @@ export default {
     hideYear: {
       type: Boolean,
       default: false
+    },
+    remote: {
+      type: Function,
+      default: null
     }
   },
   data () {
@@ -93,8 +98,8 @@ export default {
         { name: '月', value: this.month },
         { name: '周', value: this.week }
       ]
-      return this.hideYear ? c.concat({ name: '表达式', value: this.cronValue_c }) :
-        c.concat(
+      return this.hideYear ? c.concat({ name: '表达式', value: this.cronValue_c })
+        : c.concat(
           { name: '年', value: this.year },
           { name: '表达式', value: this.cronValue_c },
           { name: '表达式(不含年)', value: this.cronValue_c2 }
@@ -148,7 +153,12 @@ export default {
       if (values.length > 5) this.week = values[5]
       if (values.length > 6) this.year = values[6]
     },
-    calTriggerList () {
+    calTriggerList: debounce(function () {
+      // 设置了回调函数
+      if (this.remote) {
+        this.remote(this.cronValue_c2, +this.startTime, v => { this.preTimeList = v })
+        return
+      }
       // 去掉年份参数
       const e = this.cronValue_c2
       const format = 'yyyy-MM-dd hh:mm:ss'
@@ -162,7 +172,7 @@ export default {
         result.push(dateFormat(new Date(iter.next()), format))
       }
       this.preTimeList = result.length > 0 ? result.join('\n') : '无执行时间'
-    },
+    }, 500),
     calStartTime () {
       if (!this.exeStartTime) {
         this.startTime = new Date()
