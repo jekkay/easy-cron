@@ -26,7 +26,7 @@
 * 默认提供input-cron输入组件，开发者可以直接使用，内置validator校验
 * 纯js模拟cron表达式的执行触发时间点列表
 * 可以指定开始之后，观察cron表达式触发执行时间点
-* 可隐藏参数年的配置(hideYear)
+* 可隐藏参数秒和年的配置(hideSeconde,hideYear)
 * 配置远程函数，获取执行预览时间列表
 
 <p>依赖组件列表：</p>
@@ -53,13 +53,13 @@
 ```
 *    *    *    *    *    *   *
 ┬    ┬    ┬    ┬    ┬    ┬   ┬
-│    │    │    │    │    |   └ year (optional)
+│    │    │    │    │    |   └ year (可选)
 │    │    │    │    │    └ day of week (0 - 7) (0 or 7 is Sun)
 │    │    │    │    └───── month (1 - 12)
 │    │    │    └────────── day of month (1 - 31)
 │    │    └─────────────── hour (0 - 23)
 │    └──────────────────── minute (0 - 59)
-└───────────────────────── second (0 - 59)
+└───────────────────────── second (0 - 59) (可选)
 ```
 
 星期对应的单词缩写映射关系如下：
@@ -105,6 +105,7 @@ import EasyCron from './easy-cron'
 </FormItem>
 // 可以调整元组件大小
 // disabled属性用来禁用编辑
+// hideSecond属性表示是否隐藏参数秒，同时年参数也将会被隐藏
 // hideYear属性表示是否隐藏参数年
 // remote属性表示设置获取执行预览时间列表的函数
 <FormItem label="原始组件(800px)" prop="cronValue">
@@ -169,7 +170,8 @@ data () {
 v-model | String | 双向绑定
 disabled | Boolean| 是否禁止编辑
 exeStartTime | Number, String, Date| 设置cron表达式开始执行时间
-hideYear | Boolean| 是否隐藏参数年设置，如果隐藏，那么参数年将会全部忽略掉
+hideSecond | Boolean| 是否隐藏参数<code>秒</code>和<code>年</code>设置，如果隐藏，那么参数<code>秒</code>和<code>年</code>将会全部忽略掉。
+hideYear | Boolean| 是否隐藏参数<code>年</code>设置，如果隐藏，那么参数<code>年</code>将会全部忽略掉
 remote | Function| 获取预览执行时间列表的函数，格式为：remote (<code>cron值</code>, <code>time时间戳</code>, <code>cb回调函数</code>)
 
 #### 6. 参与贡献

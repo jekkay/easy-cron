@@ -3,13 +3,13 @@
     <div class="content">
       <div class="left">
         <Tabs size="small" v-model="curtab">
-          <TabPane label="秒" name="second"><second-ui v-model="second" :disabled="disabled"></second-ui></TabPane>
+          <TabPane label="秒" name="second" v-if="!hideSecond"><second-ui v-model="second" :disabled="disabled"></second-ui></TabPane>
           <TabPane label="分" name="minute"><minute-ui v-model="minute" :disabled="disabled"></minute-ui></TabPane>
           <TabPane label="时" name="hour"><hour-ui v-model="hour" :disabled="disabled"></hour-ui></TabPane>
           <TabPane label="日" name="day"><day-ui v-model="day" :week="week" :disabled="disabled"></day-ui></TabPane>
           <TabPane label="月" name="month"><month-ui v-model="month" :disabled="disabled"></month-ui></TabPane>
           <TabPane label="周" name="week"><week-ui v-model="week" :day="day" :disabled="disabled"></week-ui></TabPane>
-          <TabPane label="年" name="year" v-if="!hideYear"><year-ui v-model="year" :disabled="disabled"></year-ui></TabPane>
+          <TabPane label="年" name="year" v-if="!hideYear && !hideSecond"><year-ui v-model="year" :disabled="disabled"></year-ui></TabPane>
         </Tabs>
       </div>
       <div class="right">
@@ -64,6 +64,10 @@ export default {
       type: [Number, String, Object],
       default: 0
     },
+    hideSecond: {
+      type: Boolean,
+      default: false
+    },
     hideYear: {
       type: Boolean,
       default: false
@@ -75,7 +79,7 @@ export default {
   },
   data () {
     return {
-      curtab: '',
+      curtab: this.hideSecond ? 'minute' : 'second',
       second: '*',
       minute: '*',
       hour: '*',
@@ -90,15 +94,15 @@ export default {
   },
   computed: {
     tableData () {
-      let c = [
-        { name: '秒', value: this.second },
+      let c = this.hideSecond ? [] : [{ name: '秒', value: this.second }]
+      c = c.concat([
         { name: '分', value: this.minute },
         { name: '时', value: this.hour },
         { name: '日', value: this.day },
         { name: '月', value: this.month },
         { name: '周', value: this.week }
-      ]
-      return this.hideYear ? c.concat({ name: '表达式', value: this.cronValue_c })
+      ])
+      return (this.hideSecond || this.hideYear) ? c.concat({ name: '表达式', value: this.cronValue_c })
         : c.concat(
           { name: '年', value: this.year },
           { name: '表达式', value: this.cronValue_c },
@@ -107,17 +111,20 @@ export default {
     },
     cronValue_c () {
       let result = []
-      result.push(this.second ? this.second : '*')
+      if (!this.hideSecond) result.push(this.second ? this.second : '*')
       result.push(this.minute ? this.minute : '*')
       result.push(this.hour ? this.hour : '*')
       result.push(this.day ? this.day : '*')
       result.push(this.month ? this.month : '*')
       result.push(this.week ? this.week : '?')
-      if (!this.hideYear) result.push(this.year ? this.year : '*')
+      if (!this.hideYear && !this.hideSecond) result.push(this.year ? this.year : '*')
       return result.join(' ')
     },
     cronValue_c2 () {
-      return this.cronValue_c.split(' ').slice(0, 6).join(' ')
+      const v = this.cronValue_c
+      if (this.hideYear || this.hideSecond) return v
+      const vs = v.split(' ')
+      return vs.slice(0, vs.length - 1).join(' ')
     }
   },
   watch: {
@@ -145,15 +152,19 @@ export default {
       if (!this.cronValue) return
       const values = this.cronValue.split(' ').filter(item => !!item)
       if (!values || values.length <= 0) return
-      this.second = values[0]
-      if (values.length > 1) this.minute = values[1]
-      if (values.length > 2) this.hour = values[2]
-      if (values.length > 3) this.day = values[3]
-      if (values.length > 4) this.month = values[4]
-      if (values.length > 5) this.week = values[5]
-      if (values.length > 6) this.year = values[6]
+      let i = 0
+      if (!this.hideSecond) this.second = values[i++]
+      if (values.length > i) this.minute = values[i++]
+      if (values.length > i) this.hour = values[i++]
+      if (values.length > i) this.day = values[i++]
+      if (values.length > i) this.month = values[i++]
+      if (values.length > i) this.week = values[i++]
+      if (values.length > i) this.year = values[i]
     },
     calTriggerList: debounce(function () {
+      this.calTriggerListInner()
+    }, 500),
+    calTriggerListInner () {
       // 设置了回调函数
       if (this.remote) {
         this.remote(this.cronValue_c2, +this.startTime, v => { this.preTimeList = v })
@@ -161,6 +172,7 @@ export default {
       }
       // 去掉年份参数
       const e = this.cronValue_c2
+      // console.info('>>>>>>' + e)
       const format = 'yyyy-MM-dd hh:mm:ss'
       const options = {
         currentDate: dateFormat(this.startTime, format)
@@ -172,7 +184,7 @@ export default {
         result.push(dateFormat(new Date(iter.next()), format))
       }
       this.preTimeList = result.length > 0 ? result.join('\n') : '无执行时间'
-    }, 500),
+    },
     calStartTime () {
       if (!this.exeStartTime) {
         this.startTime = new Date()
@@ -197,6 +209,9 @@ export default {
   created () {
     this.formatValue()
     this.calStartTime()
+    this.$nextTick(() => {
+      this.calTriggerListInner()
+    })
   }
 }
 </script>

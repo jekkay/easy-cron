@@ -9,7 +9,7 @@
       :footer-hide="true">
         <div>
           <easy-cron v-model="editCronValue" :style="`width: ${width}px`" :exeStartTime="exeStartTime"
-            :hideYear="hideYear" :remote="remote"></easy-cron>
+            :hideYear="hideYear" :remote="remote" :hideSecond="hideSecond"></easy-cron>
         </div>
     </Modal>
   </div>
@@ -44,6 +44,10 @@ export default {
     exeStartTime: {
       type: [Number, String, Object],
       default: 0
+    },
+    hideSecond: {
+      type: Boolean,
+      default: false
     },
     hideYear: {
       type: Boolean,

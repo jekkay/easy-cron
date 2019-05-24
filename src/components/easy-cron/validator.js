@@ -13,7 +13,8 @@ export default (rule, value, callback) => {
     return false
   }
   // 检查第7项
-  if (values.length > 6) {
+  let e = value
+  if (values.length === 7) {
     const year = replaceWeekName(values[6])
     if (year !== '*' && year !== '?') {
       let yearValues = []
@@ -32,10 +33,11 @@ export default (rule, value, callback) => {
         return false
       }
     }
+    // 取其中的前六项
+    e = values.slice(0, 6).join(' ')
   }
-
-  // 取其中的前六项
-  const e = values.slice(0, 6).join(' ')
+  // 6位 没有年
+  // 5位没有秒、年
   let result = true
   try {
     const iter = CronParser.parseExpression(e)

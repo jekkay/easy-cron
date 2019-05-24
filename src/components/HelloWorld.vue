@@ -7,13 +7,17 @@
         <Form :model="formData" :rules="formDataValidator" :label-width="80">
           <FormItem label="输入组件" prop="cronValue1">
             <input-cron type="text" v-model="formData.cronValue1" :exeStartTime="exeStartTime"
-              :hideYear="true" placeholder="请输入cron表达式(http://www.easysb.cn)" />
+              :hideSecond="true" placeholder="请输入cron表达式(http://www.easysb.cn)" />
           </FormItem>
           <FormItem label="原始组件(700px)" prop="cronValue2">
             <easy-cron style="width: 700px;"  v-model="formData.cronValue2" :exeStartTime="exeStartTime"></easy-cron>
           </FormItem>
-          <FormItem label="原始组件(800px)" prop="cronValue3">
-            <easy-cron style="width: 800px;" v-model="formData.cronValue3" :disabled="true"
+          <FormItem label="原始组件(750px)" prop="cronValue3">
+            <easy-cron style="width: 750px;"  v-model="formData.cronValue3" :exeStartTime="exeStartTime"
+              :hideSecond="true"></easy-cron>
+          </FormItem>
+          <FormItem label="原始组件(800px)" prop="cronValue4">
+            <easy-cron style="width: 800px;" v-model="formData.cronValue4" :disabled="true"
               :hideYear="true" :remote="remote"></easy-cron>
           </FormItem>
           <FormItem label="url" prop="url">
@@ -47,7 +51,8 @@ export default {
         qq: '34538980',
         cronValue1: '',
         cronValue2: '4 1/2 5 7-8 1 ?',
-        cronValue3: '1 2-4 3/5 3/12 4,5,8 ? *'
+        cronValue3: '1/2 5 7-8 1 ?',
+        cronValue4: '1 2-4 3/5 3/12 4,5,8 ? *'
       },
       formDataValidator: {
         cronValue1: [
@@ -57,6 +62,9 @@ export default {
           { validator: CronValidator }
         ],
         cronValue3: [
+          { validator: CronValidator }
+        ],
+        cronValue4: [
           { validator: CronValidator }
         ]
       }
